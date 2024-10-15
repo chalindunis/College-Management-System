@@ -36,26 +36,6 @@ class Welcome extends MY_Controller {
 		$this->load->view('register', ['roles'=>$roles]);
 	}
 
-	// public function adminSignup()
-	// {
-	// 	// $this->load->library('form_validation');
-
-	// 	$this->form_validation->set_rules('username', 'Username', 'Required');
-	// 	$this->form_validation->set_rules('email', 'Email', 'Required');
-	// 	$this->form_validation->set_rules('gender', 'Gender', 'Required');
-	// 	$this->form_validation->set_rules('role_id', 'Role', 'Required');
-	// 	$this->form_validation->set_rules('password', 'Password', 'Required');
-	// 	$this->form_validation->set_rules('confpwd', 'Password Again', 'Required');
-
-	// 	$this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
-	// 	if( $this->form_validation->run()){
-	// 		echo 'Validation Passed';
-	// 	}
-	// 	else{
-	// 		echo validation_errors();
-	// 	}
-	// }
-
 	public function adminSignup() {
         // if ($this->input->server('REQUEST_METHOD') === 'POST') {
             $this->form_validation->set_rules('username', 'Username', 'required');
@@ -90,14 +70,44 @@ class Welcome extends MY_Controller {
             } else {
                 $this->adminRegister();  // Reload the form and show errors
             }
-        // } else {
-        //     $this->adminRegister();
-        // }
     }
 
-	public function adminLogin()
+	public function Login()
 	{
 		$this->load->view('login');
+	}
+
+	public function adminSignin()
+	{
+	    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
+
+        if( $this->form_validation->run()){
+            $email = $this->input->post('email');
+			$password = sha1($this->input->post('password'));
+            $this->load->model('queries');
+            $adminExist = $this->queries->adminLogin($email, $password); //check if user already exists.
+            if($adminExist){
+				$sessionData = $sessionData=[
+					'user_id' => $adminExist->user_id,
+					'username' => $adminExist->username,
+                    'role_id' => $adminExist->role_id,
+                    'email' => $adminExist->email,
+				];
+                $this->session->set_userdata($sessionData);//store an user data in a session when user joined.
+                return redirect("admin/dashboard");
+            }
+            else{
+                $this->session->set_flashdata('message','Invalid Email or Password!');
+                return redirect("welcome/Login");
+			}
+		}
+		else{
+			// echo validation_errors();
+			$this->Login();
+		}
 	}
 
 }

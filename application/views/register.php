@@ -5,7 +5,7 @@
         <?php if($msg =$this->session->flashdata('message')):?>
             <div class="row">
                 <div class="col-md-6">
-                    <div class ="alert alert-dismissible alert-success">
+                    <div class ="alert alert-dismissible alert-success"> <!--//alert message shown in green bgrnd-->
                         <?php echo $msg;?>
                     </div>
                 </div>

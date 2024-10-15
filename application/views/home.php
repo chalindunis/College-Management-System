@@ -16,7 +16,7 @@
 
 					<?php endif;?>
 						<div class="col-lg-4">
-							<?php echo anchor("welcome/login", "ADMIN LOGIN", ['class'=>'btn btn-primary']
+							<?php echo anchor("welcome/Login", "ADMIN LOGIN", ['class'=>'btn btn-primary']
 							);?>
 						</div>
 					

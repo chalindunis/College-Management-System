@@ -20,5 +20,14 @@
                 return 0;
             }
         }
+
+        public function adminLogin($email,$password){
+            $result = $this->db->where(['email' => $email, 'password' => $password])->get('tbl_users');
+            if($result->num_rows() > 0){
+                return $result->row(); //return the all record of the user row number.
+            } else {
+                return 0;
+            }
+        }
     }
 ?>
