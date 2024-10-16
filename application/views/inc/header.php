@@ -18,7 +18,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">COLLEGE MANAGEMENT SYSTEM</a>
-			
-		</div>
-	</nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('index.php/admin/dashboard'); ?>">Dashboard</a>
+                </li>            
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('index.php/welcome/logout'); ?>">Logout</a>
+                </li>
+            
+
+            </div>
+        </div>
+    </nav>
 </div>
+
+
+
+    
