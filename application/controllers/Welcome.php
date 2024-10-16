@@ -66,12 +66,12 @@ class Welcome extends MY_Controller {
 
 	public function adminSignin()
 	{
-	    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+	   $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
 
-        if( $this->form_validation->run()){
+        if( $this->form_validation->run()){ 
             $email = $this->input->post('email');
 			$password = sha1($this->input->post('password'));
             $this->load->model('queries');

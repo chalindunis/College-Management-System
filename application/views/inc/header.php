@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="">Home
+                    <a class="nav-link active" href="<?php echo base_url('index.php/welcome'); ?>">Home
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>

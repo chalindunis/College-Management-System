@@ -29,5 +29,16 @@
                 return 0;
             }
         }
+
+        public function addCollege($data){ //insert user details to the database
+            return $this->db->insert('tbl_colleges', $data); //this returns 0 or 1
+        }
+
+        public function getColleges(){ //get college details from the database
+            $colleges = $this->db->get('tbl_colleges');
+            if ($colleges->num_rows() >0){
+                return $colleges->result();
+            }
+        }
     }
 ?>
