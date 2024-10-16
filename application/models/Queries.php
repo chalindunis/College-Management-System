@@ -30,7 +30,7 @@
             }
         }
 
-        public function addCollege($data){ //insert user details to the database
+        public function addCollege($data){ //insert college details to the database
             return $this->db->insert('tbl_colleges', $data); //this returns 0 or 1
         }
 
@@ -40,5 +40,10 @@
                 return $colleges->result();
             }
         }
+
+        public function addStudent($data){ //insert student details to the database
+            return $this->db->insert('tbl_students', $data); //this returns 0 or 1
+        }
+
     }
 ?>

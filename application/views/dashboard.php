@@ -5,7 +5,7 @@
         <p>Welcome, <?php echo $username;?></p>
 
         <?php echo anchor("admin/addCollege", "ADD COLLEGE", ['class'=>'btn btn-primary'])?>
-        <?php echo anchor("admin/addStudent", "ADD STUDENT", ['class'=>'btn btn-primary'])?>
+        <?php echo anchor("admin/addStudents", "ADD STUDENT", ['class'=>'btn btn-primary'])?>
         <?php echo anchor("admin/addCoadmin", "ADD CO-ADMIN", ['class'=>'btn btn-primary'])?>
 
         <hr>

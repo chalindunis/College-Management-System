@@ -13,7 +13,7 @@ class Admin extends MY_Controller{
         $this->load->view('addCollege');
     }
 
-    public function addStudent(){
+    public function addStudents(){
         // echo 'inside add Student function';
         $this->load->view('addStudent');
     }
@@ -48,6 +48,33 @@ class Admin extends MY_Controller{
             $this->addCollege();  // Reload the form and show errors
         }
     }
+
+
+    public function createStudent(){
+        $this->form_validation->set_rules('studentname', 'Student Name', 'required');
+
+        $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
+
+        $data = $this->input->post();
+        if( $this->form_validation->run()){
+           
+            $data = $this->input->post();
+            $this->load->model('queries');
+            if ($this->queries->addStudent($data)){
+                $this->session->set_flashdata('message','Student Added Successfully');
+                return redirect("admin/addStudents");
+            }
+            else{
+                $this->session->set_flashdata('message','Failed to Add Student!');
+                return redirect("admin/addStudents");
+            }
+
+
+        } else {
+            $this->addStudents();  // Reload the form and show errors
+        }
+    }
+
 
     public function __construct()
     {
