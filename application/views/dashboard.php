@@ -6,7 +6,7 @@
 
         <?php echo anchor("admin/addCollege", "ADD COLLEGE", ['class'=>'btn btn-primary'])?>
         <?php echo anchor("admin/addStudents", "ADD STUDENT", ['class'=>'btn btn-primary'])?>
-        <?php echo anchor("admin/addCoadmin", "ADD CO-ADMIN", ['class'=>'btn btn-primary'])?>
+        <?php echo anchor("admin/addCoadmin", "ADD CO-ADMIN", ['class'=>'btn btn-primary'])?> 
 
         <hr>
         <table class="table table-bordered">
@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if(!empty($colleges)): ?> <!-- get database college data to update the table -->
+                <?php if(!empty($colleges)): ?> <!--get database college data to update the table -->
                     <?php foreach($colleges as $college): ?>
                         <tr>
                             <td><?php echo $college->college_id; ?></td>
