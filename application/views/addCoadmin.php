@@ -84,6 +84,30 @@
             </div>
         </div>
 
+
+        <div class ="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">College</label>
+                    <select class="col-md-12" name="college_id">
+                        <option value="">Select</option>
+                        <!-- fetch database data to the dropdown -->
+                        <?php if (count($colleges)):?> 
+                            <?php foreach($colleges as $college):?>
+                        <option value=<?php echo $college->college_id?>><?php echo $college->collegename?></option>
+                        <?php endforeach;?>
+                        <?php endif;?>
+
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                    <?php echo form_error('college_id','<div class="text-danger">','</div>');?>
+            </div>
+        </div>
+
+
         <div class ="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -115,7 +139,7 @@
         </div>       
 
         <button type="submit" class="btn btn-primary">ADD</button>
-        <?php echo anchor("welcome", "Back", ['class'=>'btn btn-primary']);?>
+        <?php echo anchor("admin/dashboard", "Back", ['class'=>'btn btn-primary']);?>
     
         <?php echo form_close();?>
     </div>

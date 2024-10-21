@@ -6,7 +6,7 @@
 
         <?php echo anchor("admin/addCollege", "ADD COLLEGE", ['class'=>'btn btn-primary'])?>
         <?php echo anchor("admin/addStudents", "ADD STUDENT", ['class'=>'btn btn-primary'])?>
-        <?php echo anchor("admin/addCoadmin", "ADD CO-ADMIN", ['class'=>'btn btn-primary'])?> 
+        <?php echo anchor("admin/addCoAdmin", "ADD CO-ADMIN", ['class'=>'btn btn-primary'])?> 
 
         <hr>
         <table class="table table-bordered">
@@ -23,16 +23,16 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if(!empty($colleges)): ?> <!--get database college data to update the table -->
-                    <?php foreach($colleges as $college): ?>
+                <?php if(!empty($users)): ?> <!--get database college data to update the table -->
+                    <?php foreach($users as $user): ?>
                         <tr>
-                            <td><?php echo $college->college_id; ?></td>
-                            <td><?php echo $college->collegename; ?></td>
-                            <td>me</td>
-                            <td>me@gmail.com</td>
-                            <td>admin</td>
-                            <td>male</td>
-                            <td><?php echo $college->location; ?></td>
+                            <td><?php echo $user->college_id; ?></td>
+                            <td><?php echo $user->collegename; ?></td>
+                            <td><?php echo $user->username; ?></td>
+                            <td><?php echo $user->email; ?></td>
+                            <td><?php echo $user->rolename; ?></td>
+                            <td><?php echo $user->gender; ?></td>
+                            <td><?php echo $user->location; ?></td>
                             <td>
                                 <?php echo anchor("college/edit/1", "Edit", ['class'=>'btn btn-warning'])?>
                                 <?php echo anchor("college/delete/1", "Delete", ['class'=>'btn btn-danger'])?>
