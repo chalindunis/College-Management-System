@@ -36,6 +36,7 @@
                             <td>
                                 <?php echo anchor("college/edit/1", "Edit", ['class'=>'btn btn-warning'])?>
                                 <?php echo anchor("college/delete/1", "Delete", ['class'=>'btn btn-danger'])?>
+                                <?php echo anchor("college/delete/1", "View Students", ['class'=>'btn btn'])?>
                             </td>
                         </tr>
                     <?php endforeach;?>

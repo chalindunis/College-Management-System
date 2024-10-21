@@ -15,7 +15,9 @@ class Admin extends MY_Controller{
 
     public function addStudents(){
         // echo 'inside add Student function';
-        $this->load->view('addStudent');
+        $this->load->model('queries');
+        $colleges = $this->queries->getColleges();
+        $this->load->view('addStudent',['colleges'=>$colleges]);
     }
 
     public function addCoAdmin(){
@@ -53,30 +55,34 @@ class Admin extends MY_Controller{
     }
 
 
-    // public function createStudent(){
-    //     $this->form_validation->set_rules('studentname', 'Student Name', 'required');
+    public function createStudent(){
+        $this->form_validation->set_rules('studentname', 'Student Name', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
+        $this->form_validation->set_rules('college_id', 'College', 'required');
+        $this->form_validation->set_rules('course', 'Course', 'required');
 
-    //     $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
+        $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
 
-    //     $data = $this->input->post();
-    //     if( $this->form_validation->run()){
+        $data = $this->input->post();
+        if( $this->form_validation->run()){
            
-    //         $data = $this->input->post();
-    //         $this->load->model('queries');
-    //         if ($this->queries->addStudent($data)){
-    //             $this->session->set_flashdata('message','Student Added Successfully');
-    //             return redirect("admin/addStudents");
-    //         }
-    //         else{
-    //             $this->session->set_flashdata('message','Failed to Add Student!');
-    //             return redirect("admin/addStudents");
-    //         }
+            $data = $this->input->post();
+            $this->load->model('queries');
+            if ($this->queries->addStudent($data)){
+                $this->session->set_flashdata('message','Student Added Successfully');
+                return redirect("admin/addStudents");
+            }
+            else{
+                $this->session->set_flashdata('message','Failed to Add Student!');
+                return redirect("admin/addStudents");
+            }
 
 
-    //     } else {
-    //         $this->addCoAdmin();  // Reload the form and show errors
-    //     }
-    // }
+        } else {
+            $this->addStudents();  // Reload the form and show errors
+        }
+    }
 
 
     public function createCoadmin() {
