@@ -34,12 +34,14 @@
                             <td><?php echo $user->gender; ?></td>
                             <td><?php echo $user->location; ?></td>
                             <td>
-                                <?php echo anchor("college/edit/1", "Edit", ['class'=>'btn btn-warning'])?>
-                                <?php echo anchor("college/delete/1", "Delete", ['class'=>'btn btn-danger'])?>
-                                <?php echo anchor("college/delete/1", "View Students", ['class'=>'btn btn'])?>
+                                <?php echo anchor("admin/viewStudents/{$user->college_id}", "View Students", ['class'=>'buttons'])?>
                             </td>
                         </tr>
                     <?php endforeach;?>
+                <?php else:?>
+                    <tr>
+                        <td colspan="8">No Data Found</td>
+                    </tr>
                 <?php endif;?>
             </tbody>
         </table>

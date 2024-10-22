@@ -41,6 +41,18 @@
             }
         }
 
+        public function getStudents($college_id){ //get student details from the database
+            //select the fields that need 
+            $this->db->select(['tbl_colleges.collegename','tbl_students.id','tbl_students.studentname','tbl_students.email','tbl_students.gender','tbl_students.course']);
+            //join tbl students and tbl collections using college_id
+            $this->db->from('tbl_students');
+            $this->db->join('tbl_colleges', 'tbl_students.college_id = tbl_colleges.college_id');
+            
+            $this->db->where(['tbl_students.college_id'=> $college_id]); // get the students that match with the college_id
+            $students = $this->db->get();
+            return $students->result();
+        }
+
         public function registerCoAdmin($data){ //insert user details to the database
             return $this->db->insert('tbl_users', $data); //this returns 0 or 1
         }

@@ -8,7 +8,6 @@ class Admin extends MY_Controller{
 		$this->load->view('dashboard', ['users'=>$users]);
 	}
 
-    
     public function addCollege(){
         $this->load->view('addCollege');
     }
@@ -27,6 +26,13 @@ class Admin extends MY_Controller{
         // echo 'inside add coadmin function';
         $this->load->view('addCoadmin', ['roles'=>$roles,'colleges'=>$colleges]);
     }
+
+    public function viewStudents($college_id){
+        $this->load->model('queries');
+		$students = $this->queries->getStudents($college_id);
+        $this->load->view('viewStudent',['students'=>$students]);
+    }
+
 
     public function createCollege(){
         $this->form_validation->set_rules('collegename', 'College Name', 'required');
