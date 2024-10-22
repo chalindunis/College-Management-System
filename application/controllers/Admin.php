@@ -34,6 +34,56 @@ class Admin extends MY_Controller{
     }
 
 
+    public function editStudent($id){
+        $this->load->model('queries');
+		$studentData = $this->queries->getStudentRecord($id);
+        $colleges = $this->queries->getColleges();
+        $this->load->view('editStudent',['studentData'=>$studentData, 'colleges'=>$colleges]);
+    }
+
+    public function modifyStudent($id){
+        $this->form_validation->set_rules('studentname', 'Student Name', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
+        $this->form_validation->set_rules('college_id', 'College', 'required');
+        $this->form_validation->set_rules('course', 'Course', 'required');
+
+        $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
+
+        if( $this->form_validation->run()){
+            $data = $this->input->post();
+            $this->load->model('queries');
+            if ($this->queries->updateStudent($data,$id)){
+                $this->session->set_flashdata('message','Student Updated Successfully');
+                return redirect("admin/editStudent/{$id}"); 
+            }
+            else{
+                $this->session->set_flashdata('message','Failed to Update Student!');
+                return redirect("admin/editStudent/{$id}");
+            }
+
+
+        } else {
+            $this->editStudent();  // Reload the form and show errors
+        }
+
+
+        $this->load->model('queries');
+        $data = $this->input->post();
+        if($this->queries->updateStudent($id, $data)){
+            $this->session->set_flashdata('message','Student Modified Successfully');
+            return redirect("admin/viewStudents/$data[college_id]");
+        }
+        else{
+            $this->session->set_flashdata('message','Failed to Modify Student!');
+            return redirect("admin/editStudent/$id");
+        }
+    }
+
+    public function deleteStudent($id){
+        echo $id;
+    }
+
     public function createCollege(){
         $this->form_validation->set_rules('collegename', 'College Name', 'required');
         $this->form_validation->set_rules('location', 'Location', 'required');

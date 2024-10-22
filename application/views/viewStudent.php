@@ -27,8 +27,8 @@
                             <td><?php echo $student->email; ?></td>
                             <td><?php echo $student->course; ?></td>
                             <td>
-                                <?php echo anchor("college/edit/1", "Edit", ['class'=>'btn btn-warning'])?>
-                                <?php echo anchor("college/delete/1", "Delete", ['class'=>'btn btn-danger'])?> 
+                                <?php echo anchor("admin/editStudent/{$student->id}", "Edit", ['class'=>'btn btn-warning'])?>
+                                <?php echo anchor("admin/deleteStudent/{$student->id}", "Delete", ['class'=>'btn btn-danger'])?> 
                             </td>
                         </tr>
                     <?php endforeach;?>

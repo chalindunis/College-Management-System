@@ -61,6 +61,22 @@
             return $this->db->insert('tbl_students', $data); //this returns 0 or 1
         }
 
+        public function getStudentRecord($id){ //get a student details from the database for update
+            $this->db->select(['tbl_colleges.college_id','tbl_colleges.collegename','tbl_students.id','tbl_students.studentname','tbl_students.email','tbl_students.gender','tbl_students.course']);
+            //join tbl students and tbl collections using college_id
+            $this->db->from('tbl_students');
+            $this->db->join('tbl_colleges', 'tbl_students.college_id = tbl_colleges.college_id');
+            $this->db->where(['tbl_students.id'=> $id]);
+            $student = $this->db->get();
+            return $student->row();
+        }
+
+        public function updateStudent($data, $id){
+            $this->db->where('id',$id);//$this->input->post('student_id'));
+            return $this->db->update('tbl_students', $data); //this returns 0 or 1
+        }
+
+
         public function viewAllColleges(){ //join tables to display details on dashboard table
             $this->db->select(['tbl_users.user_id','tbl_users.email','tbl_colleges.college_id','tbl_users.username','tbl_users.gender','tbl_colleges.collegename','tbl_colleges.location','tbl_roles.rolename']);
             $this->db->from('tbl_colleges');
