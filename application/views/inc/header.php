@@ -31,17 +31,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <?php echo $user_id = $this->session->userdata('user_id'); ?>
+                </li>
+                
+                <li class="nav-item">
                     <a class="nav-link active" href="<?php echo base_url('index.php/welcome'); ?>">Home
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
+                <?php if ($user_id == '1'): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/admin/dashboard'); ?>">Co-Admins</a>
+                    </li>  
+                <?php else:?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/users/list'); ?>">My Students</a>
+                    </li>  
+                <?php endif;?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('index.php/admin/dashboard'); ?>">Dashboard</a>
                 </li>            
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('index.php/welcome/logout'); ?>">Logout</a>
                 </li>
-            
+                
 
             </div>
         </div>

@@ -75,16 +75,22 @@ class Welcome extends MY_Controller {
             $email = $this->input->post('email');
 			$password = sha1($this->input->post('password'));
             $this->load->model('queries');
-            $adminExist = $this->queries->adminLogin($email, $password); //check if user already exists.
-            if($adminExist){
+            $userExist = $this->queries->adminLogin($email, $password); //check if user already exists.
+            if($userExist){
 				$sessionData = $sessionData=[
-					'user_id' => $adminExist->user_id,
-					'username' => $adminExist->username,
-                    'role_id' => $adminExist->role_id,
-                    'email' => $adminExist->email,
+					'user_id' => $userExist->user_id,
+					'username' => $userExist->username,
+                    'role_id' => $userExist->role_id,
+                    'email' => $userExist->email,
+					'college_id' => $userExist->college_id,
 				];
                 $this->session->set_userdata($sessionData);//store an user data in a session when user joined.
-                return redirect("admin/dashboard");
+                if ($userExist->user_id == '1'){
+					return redirect("admin/dashboard");
+				}
+				else{
+                    return redirect("users/dashboard");
+                }
             }
             else{
                 $this->session->set_flashdata('message','Invalid Email or Password!');
