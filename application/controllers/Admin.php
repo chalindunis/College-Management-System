@@ -33,6 +33,12 @@ class Admin extends MY_Controller{
         $this->load->view('viewStudent',['students'=>$students]);
     }
 
+    public function viewCoadmins(){
+        $this->load->model('queries');
+        $coadmins = $this->queries->viewAllColleges();
+        // echo '<pre>';print_r($coadmins);echo '</pre>';exit();
+        $this->load->view('viewCoadmins',['coadmins'=>$coadmins]);
+    }
 
     public function editStudent($id){
         $this->load->model('queries');

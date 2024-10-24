@@ -41,9 +41,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
                 <?php if ($user_id == '1'): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url('index.php/admin/dashboard'); ?>">Co-Admins</a>
+                        <a class="nav-link" href="<?php echo base_url('index.php/admin/viewCoadmins'); ?>">Co-Admins</a>
                     </li>  
-                <?php else:?>
+                <?php elseif ($user_id > '1'):?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('index.php/users/list'); ?>">My Students</a>
                     </li>  
