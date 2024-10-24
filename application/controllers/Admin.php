@@ -81,7 +81,11 @@ class Admin extends MY_Controller{
     }
 
     public function deleteStudent($id){
-        echo $id;
+        $this->load->model('queries');
+        if($this->queries->removeStudent($id)){
+            return redirect("admin/dashboard");
+        }
+        // echo $id;
     }
 
     public function createCollege(){

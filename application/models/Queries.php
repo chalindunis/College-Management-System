@@ -76,6 +76,10 @@
             return $this->db->update('tbl_students', $data); //this returns 0 or 1
         }
 
+        public function removeStudent($id){ //delete a student from the database
+            return $this->db->delete('tbl_students', ['id' => $id]); //this returns 0 or 1
+        }
+
 
         public function viewAllColleges(){ //join tables to display details on dashboard table
             $this->db->select(['tbl_users.user_id','tbl_users.email','tbl_colleges.college_id','tbl_users.username','tbl_users.gender','tbl_colleges.collegename','tbl_colleges.location','tbl_roles.rolename']);
