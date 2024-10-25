@@ -99,20 +99,20 @@
                 <?php echo form_error('course','<div class="text-danger">','</div>');?>
             </div>
         </div>
-<!-- 
+
         <div class ="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Upload Document</label>
+                    <label class="col-md-3 control-label">Upload Image</label>
                     <div class="col-md-12">
-                        <?php echo form_upload(['name'=>'student_document', 'class'=>'form-control']);?>
+                        <?php echo form_upload(['name'=>'student_img', 'class'=>'form-control']);?>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <?php echo form_error('student_document','<div class="text-danger">','</div>');?>
+                <?php echo form_error('student_img','<div class="text-danger">','</div>');?>
             </div>
-        </div> -->
+        </div>
 
         <button type="submit" class="btn btn-primary">ADD</button>
         <?php echo anchor("admin/dashboard", "Back", ['class'=>'btn btn-primary']);?>

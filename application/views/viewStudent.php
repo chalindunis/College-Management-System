@@ -8,6 +8,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Student Image</th>
                     <th>Student Name</th>
                     <th>College Name</th>
                     <th>Gender</th>
@@ -21,6 +22,7 @@
                     <?php foreach($students as $student): ?>
                         <tr>
                             <td><?php echo $student->id; ?></td>
+                            <td><img src="<?php echo base_url('assets/uploads/' . $student->student_img); ?>" alt="User Image" class="student-image" style="display: block; margin: auto;" ></td>  <!--//echo $student->student_img; ?></td>-->
                             <td><?php echo $student->studentname; ?></td>
                             <td><?php echo $student->collegename; ?></td>
                             <td><?php echo $student->gender; ?></td>
