@@ -62,7 +62,7 @@
         }
 
         public function getStudentRecord($id){ //get a student details from the database for update
-            $this->db->select(['tbl_colleges.college_id','tbl_colleges.collegename','tbl_students.id','tbl_students.studentname','tbl_students.email','tbl_students.gender','tbl_students.course']);
+            $this->db->select(['tbl_colleges.college_id','tbl_colleges.collegename','tbl_students.id','tbl_students.student_img','tbl_students.studentname','tbl_students.email','tbl_students.gender','tbl_students.course']);
             //join tbl students and tbl collections using college_id
             $this->db->from('tbl_students');
             $this->db->join('tbl_colleges', 'tbl_students.college_id = tbl_colleges.college_id');

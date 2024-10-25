@@ -15,6 +15,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             border-radius: 5px;
             padding: 2px 10px 2px 10px;
         }
+        .user-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .student-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
     </style>
 
 </head>
@@ -31,7 +42,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <?php echo $user_id = $this->session->userdata('user_id'); ?>
+                    <!-- <?php echo $user_id = $this->session->userdata('user_id'); ?> -->
+                    <?php 
+                    $user_image = 'UOM logo.png';//$this->session->userdata('user_image'); // Assuming user_image is stored in session
+                    if ($user_image): ?>
+                        <img src="<?php echo base_url('assets/uploads/' . $user_image); ?>" alt="User Image" class="user-image">
+                    <?php endif; ?>
                 </li>
                 
                 <li class="nav-item">

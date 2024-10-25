@@ -100,6 +100,19 @@
             </div>
         </div>
 
+        <div class ="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Upload Image</label>
+                    <div class="col-md-12">
+                        <?php echo form_upload(['name'=>'student_img', 'class'=>'form-control', 'value'=>set_value('student_img',$studentData->student_img)]);?>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-6">
+                <?php echo form_error('student_img','<div class="text-danger">','</div>');?>
+            </div> -->
+        </div>
 
         <button type="submit" class="btn btn-primary">UPDATE</button>
         <?php echo anchor("admin/viewStudents/{$studentData->id}", "Back", ['class'=>'btn btn-primary']);?>
