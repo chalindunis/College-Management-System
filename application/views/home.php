@@ -1,8 +1,21 @@
 
 <?php include("inc/header.php");?>
+
+	<div class="hero-image">
 	<div class="container">
 		<div class="jumbotron">
-			<h2 class="display-5" style="text-align: center;">Welcome to College Managaement System!</h2>
+			<div class="hero-text">
+			<h1 style="text-align: center; color: black; padding: 100px 2px 100px 2px;">Welcome to the College Management System</h1>
+			<!-- <h2 class="display-5" style="text-align: center; color: black;">Welcome to College Managaement System!</h2> -->
+			</div>
+		</div>		
+	</div>
+	</div>
+
+	<div class="container">
+		<div class="jumbotron">
+			<hr>
+			<p>Please login to continue</p>
 			<hr> <!-- horizontal rule -->
 			<div class="my-4">
 				<div class="row">

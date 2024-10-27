@@ -109,13 +109,13 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-6">
+            <div class="col-md-6">
                 <?php echo form_error('student_img','<div class="text-danger">','</div>');?>
-            </div> -->
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">UPDATE</button>
-        <?php echo anchor("admin/viewStudents/{$studentData->id}", "Back", ['class'=>'btn btn-primary']);?>
+        <?php echo anchor("admin/viewStudents/{$studentData->college_id}", "Back", ['class'=>'btn btn-primary']);?>
     
         <?php echo form_close();?>
     </div>

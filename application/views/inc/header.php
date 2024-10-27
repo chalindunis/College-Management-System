@@ -26,6 +26,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             height: 80px;
             object-fit: cover;
         }
+        .hero-image {
+        background-image: url("<?php echo base_url('assets/uploads/cover2.jpeg'); ?>");
+        /* background-image: base_url('assets/uploads/cover2.jpeg'); */
+        background-size: cover;
+        background-position: center;
+        height: 300px; /* Adjust the height as needed */
+        position: relative;
+        text-align: center;
+        color: white;
+        }
     </style>
 
 </head>
