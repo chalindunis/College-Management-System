@@ -36,6 +36,15 @@
 				</div>
 			</div>
 		</div>		
+
+		<section id="about-section">
+			<!-- Content of the About section -->
+			<p>This system is designed as a Schools & Colleges Information Management System. 
+				School or College can manage student & staff detail. Here, system has two user roles admin and co-admin. 
+				As an admin, add new colleges, add co-admins, add students priviledges are provided while co-admins have 
+				view thier student details, update details are the Key features of the sysytem. 
+				Additionally CRUD operations have been included.</p>
+		</section>
 	</div>
 
 <?php include("inc/footer.php");?>

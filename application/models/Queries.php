@@ -21,7 +21,7 @@
             }
         }
 
-        public function adminLogin($email,$password){
+        public function adminLogin($email,$password){ //checking admin details for the login
             $result = $this->db->where(['email' => $email, 'password' => $password])->get('tbl_users');
             if($result->num_rows() > 0){
                 return $result->row(); //return the all record of the user row number.
@@ -71,8 +71,12 @@
             return $student->row();
         }
 
-        public function updateStudent($data, $id){
+        public function updateStudent($data, $id){ //update the particular student details by their id
             $this->db->where('id',$id);//$this->input->post('student_id'));
+            echo '<pre>';
+            print_r($data->result());
+            echo '</pre>';
+            exit();
             return $this->db->update('tbl_students', $data); //this returns 0 or 1
         }
 
