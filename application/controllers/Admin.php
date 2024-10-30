@@ -86,13 +86,39 @@ class Admin extends MY_Controller{
         }
     }
 
-    public function deleteStudent($id){
+    // public function deleteStudent($id){
+    //     $this->load->model('queries');
+    //     if($this->queries->removeStudent($id)){
+    //         return redirect("admin/dashboard");
+    //     }
+    //     // echo $id;
+    // }
+
+    public function deleteStudent($id) {
         $this->load->model('queries');
-        if($this->queries->removeStudent($id)){
-            return redirect("admin/dashboard");
+        $student = $this->queries->getStudentRecord($id);
+        // Check if form was submitted
+        if ($this->input->post('confirm_delete')) {
+            // Perform deletion
+            if ($this->queries->removeStudent($id)) {
+                $this->session->set_flashdata('success', 'Student Deleted Successfully');
+            } else {
+                $this->session->set_flashdata('error', 'Failed to Delete Student!');
+            }
+            return redirect("admin/viewStudents/{$student->college_id}");
         }
-        // echo $id;
+        // Get student data to show in confirmation
+        if (!$student) {
+            $this->session->set_flashdata('error', 'Student not found!');
+            return redirect('admin/dashboard');
+        }
+        // Load confirmation view
+        $data['student'] = $student;
+        // echo '<pre>'; print_r($data); echo '</pre>';exit();
+        
+        $this->load->view('deleteStudent', $data);
     }
+
 
     public function createCollege(){
         $this->form_validation->set_rules('collegename', 'College Name', 'required');

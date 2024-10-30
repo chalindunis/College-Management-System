@@ -50,7 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
+            <!--align nav items to the right-->
+            <ul class="navbar-nav mr-auto">  
                 <li class="nav-item">
                     <!-- <?php echo $user_id = $this->session->userdata('user_id'); ?> -->
                     <?php 
@@ -69,6 +70,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('index.php/admin/viewCoadmins'); ?>">Co-Admins</a>
                     </li>  
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/admin/dashboard'); ?>">Dashboard</a>
+                    </li>    
+
                 <?php elseif ($user_id > '1'):?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('index.php/users/list'); ?>">My Students</a>
@@ -76,12 +82,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php endif;?>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('index.php/admin/dashboard'); ?>">Dashboard</a>
-                </li>            
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('index.php/welcome/logout'); ?>">Logout</a>
+                    <a class="nav-link" href="<?php echo base_url('index.php/welcome'); ?>">About</a>
                 </li>
-                
+            </ul>
+            <!-- align nav items to the left -->
+            <ul class="navbar-nav ml-auto">  
+                <?php if ($user_id): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url('index.php/welcome/logout'); ?>">Logout</a>
+                    </li>
+                <?php endif;?>
+            </ul>
 
             </div>
         </div>
