@@ -72,11 +72,11 @@
         }
 
         public function updateStudent($data, $id){ //update the particular student details by their id
-            $this->db->where('id',$id);//$this->input->post('student_id'));
-            echo '<pre>';
-            print_r($data->result());
-            echo '</pre>';
-            exit();
+            $this->db->where('id',$id);
+            // echo '<pre>';
+            // print_r($data);
+            // echo '</pre>';
+            // exit();
             return $this->db->update('tbl_students', $data); //this returns 0 or 1
         }
 

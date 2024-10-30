@@ -44,7 +44,7 @@ class Admin extends MY_Controller{
         $this->load->model('queries');
 		$studentData = $this->queries->getStudentRecord($id);
         $colleges = $this->queries->getColleges();
-        $this->load->view('editStudent',['studentData'=>$studentData, 'colleges'=>$colleges]);
+        $this->load->view('editStudent',['studentData'=>$studentData, 'college_id' => $studentData->college_id,'colleges'=>$colleges]);
     }
 
     public function modifyStudent($id){
@@ -53,13 +53,16 @@ class Admin extends MY_Controller{
         $this->form_validation->set_rules('gender', 'Gender', 'required');
         $this->form_validation->set_rules('college_id', 'College', 'required');
         $this->form_validation->set_rules('course', 'Course', 'required');
+        $this->form_validation->set_rules('student_img', 'Image', 'required');
 
         $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
 
         if( $this->form_validation->run()){
-            $data = $this->input->post();
+                 
             $this->load->model('queries');
+            $data = $this->input->post();
             if ($this->queries->updateStudent($data,$id)){
+                // echo '<pre>';print_r($data);echo '</pre>';exit();
                 $this->session->set_flashdata('message','Student Updated Successfully');
                 return redirect("admin/editStudent/{$id}"); 
             }
@@ -68,22 +71,11 @@ class Admin extends MY_Controller{
                 return redirect("admin/editStudent/{$id}");
             }
 
-
-        } else {
-            $this->editStudent();  // Reload the form and show errors
+        } 
+        else {
+            $this->editStudent($id);  // Reload the form and show errors
         }
-
-
-        $this->load->model('queries');
-        $data = $this->input->post();
-        if($this->queries->updateStudent($id, $data)){
-            $this->session->set_flashdata('message','Student Modified Successfully');
-            return redirect("admin/viewStudents/$data[college_id]");
-        }
-        else{
-            $this->session->set_flashdata('message','Failed to Modify Student!');
-            return redirect("admin/editStudent/$id");
-        }
+        
     }
 
     // public function deleteStudent($id){
