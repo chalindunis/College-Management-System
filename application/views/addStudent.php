@@ -114,6 +114,20 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Student Document (Max 50MB)</label>
+                    <div class="col-md-12">
+                        <?php echo form_upload(['name'=>'std_document', 'class'=>'form-control']);?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <?php echo form_error('std_document','<div class="text-danger">','</div>');?>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">ADD</button>
         <?php echo anchor("admin/dashboard", "Back", ['class'=>'btn btn-primary']);?>
     

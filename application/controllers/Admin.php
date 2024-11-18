@@ -148,10 +148,34 @@ class Admin extends MY_Controller{
 
         $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
 
-        $data = $this->input->post();
-        if( $this->form_validation->run()){
-           
+        $config['upload_path'] = './uploads/documents/'; //----
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $config['max_size'] = 51200; // 50MB
+        
+        $this->load->library('upload', $config);//----
+
+        if( $this->form_validation->run()){  //&& $this->upload->do_upload('document')) {
             $data = $this->input->post();
+           
+            $upload_data = $this->upload->data(); //----
+            // echo '<pre>'; print_r($upload_data) ;'</pre>'; exit(); 
+            $document_name = $upload_data['file_name'];//----
+            // $document_path = $upload_data['full_path'];
+            $student_name = $data['studentname']; 
+
+            $output_folder = './uploads/split_pdfs/' . $student_name . '/';
+            if (!is_dir($output_folder)) {
+                mkdir($output_folder, 0777, true);
+            }
+            $document_path = 'D:\xampp\htdocs\College-Management-System\uploads\documents\Training_Report_190005E (1).pdf';
+            $python_script = 'python D:/xampp/htdocs/College-Management-System/Pdf_splitter.py';
+            $command = "{$python_script} \"{$document_path}\" \"{$output_folder}\"";
+            $output = shell_exec($command);
+    
+            // Add document info to data array
+            // $data['document_path'] = $document_path;
+            // $data['split_pdfs_path'] = $output_folder;    
+
             $this->load->model('queries');
             if ($this->queries->addStudent($data)){
                 $this->session->set_flashdata('message','Student Added Successfully');
